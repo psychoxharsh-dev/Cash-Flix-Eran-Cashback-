@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrackFlix ⚡ — India's Highest Paying Reward Network</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #070b14;
+  --bg2: #0a0f1e;
+  --card: #0f1628;
+  --card2: #151d30;
+  --blue: #3b82f6;
+  --cyan: #22d3ee;
+  --yellow: #f59e0b;
+  --green: #10b981;
+  --text: #f1f5f9;
+  --muted: #64748b;
+  --border: #1a2540;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Manrope',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
+
+/* GLOW BG */
+body::before {
+  content:'';
+  position:fixed;
+  top:-200px; left:50%;
+  transform:translateX(-50%);
+  width:600px; height:600px;
+  background:radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+  pointer-events:none; z-index:0;
+}
+
+/* NAVBAR */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 20px;
+  background:rgba(7,11,20,0.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.logo {
+  font-size:22px; font-weight:900;
+  color:#fff;
+  display:flex; align-items:center; gap:4px;
+}
+.logo .name { color:#fff; }
+.logo .bolt {
+  color:var(--yellow);
+  text-shadow: 0 0 10px rgba(245,158,11,0.8), 0 0 20px rgba(245,158,11,0.4), 0 0 40px rgba(245,158,11,0.2);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 8px rgba(245,158,11,0.6), 0 0 16px rgba(245,158,11,0.3); }
+  to { text-shadow: 0 0 16px rgba(245,158,11,1), 0 0 32px rgba(245,158,11,0.6), 0 0 48px rgba(245,158,11,0.3); }
+}
+.menu-btn {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:10px; padding:8px 14px;
+  cursor:pointer; color:var(--text); font-size:20px;
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  display:none; position:fixed; top:0; right:0; bottom:0; width:280px; z-index:200;
+  background:var(--bg2); border-left:1px solid var(--border);
+  padding:24px; flex-direction:column;
+}
+.mobile-menu.open { display:flex; }
+.menu-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; }
+.menu-close { background:none; border:none; color:var(--muted); font-size:24px; cursor:pointer; }
+.menu-label { font-size:10px; font-weight:700; color:var(--muted); letter-spacing:2px; margin:0 0 12px; }
+.menu-item {
+  display:flex; align-items:center; gap:12px;
+  padding:13px 16px; border-radius:12px;
+  color:var(--text); text-decoration:none;
+  font-weight:600; font-size:15px;
+  transition:background 0.2s; margin-bottom:4px;
+}
+.menu-item:hover { background:var(--card); }
+.menu-tg {
+  background:var(--yellow); color:#000;
+  border:none; border-radius:14px;
+  padding:14px; font-size:15px; font-weight:800;
+  font-family:'Manrope',sans-serif; cursor:pointer;
+  width:100%; margin-top:auto;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  text-decoration:none;
+}
+.stay-box {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:14px; padding:14px; margin-bottom:16px;
+}
+.stay-box .tag { font-size:10px; font-weight:800; color:var(--yellow); letter-spacing:1.5px; margin-bottom:6px; }
+.stay-box p { font-size:12px; color:var(--muted); line-height:1.6; }
+
+/* HERO */
+.hero {
+  position:relative; z-index:1;
+  padding:110px 20px 60px;
+  text-align:center;
+  max-width:480px; margin:0 auto;
+}
+.trust-pill {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--card); border:1px solid var(--border);
+  border-radius:20px; padding:7px 16px;
+  font-size:13px; font-weight:600; color:var(--muted);
+  margin-bottom:28px;
+}
+.trust-pill .dot { width:7px; height:7px; background:var(--green); border-radius:50%; }
+.hero h1 {
+  font-size:42px; font-weight:900;
+  line-height:1.1; margin-bottom:20px;
+  letter-spacing:-1px;
+}
+.hero h1 .gradient {
+  background:linear-gradient(135deg, var(--blue), var(--cyan));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.hero p {
+  font-size:15px; color:var(--muted);
+  line-height:1.75; margin-bottom:32px;
+  max-width:360px; margin-left:auto; margin-right:auto;
+}
+.hero-btns { display:flex; flex-direction:column; gap:12px; margin-bottom:40px; }
+.btn-primary {
+  background:linear-gradient(135deg, var(--blue), var(--cyan));
+  color:#fff; border:none; border-radius:50px;
+  padding:16px 24px; font-size:16px; font-weight:700;
+  font-family:'Manrope',sans-serif; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  text-decoration:none; transition:all 0.2s;
+  box-shadow:0 4px 20px rgba(59,130,246,0.3);
+}
+.btn-secondary {
+  background:transparent; color:var(--text);
+  border:1px solid var(--border); border-radius:50px;
+  padding:16px 24px; font-size:16px; font-weight:700;
+  font-family:'Manrope',sans-serif; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  text-decoration:none; transition:all 0.2s;
+}
+
+/* EARNINGS */
+.earnings-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:24px; padding:24px;
+  text-align:left; position:relative; overflow:hidden;
+}
+.earnings-card::before {
+  content:'';
+  position:absolute; top:-40px; right:-40px;
+  width:160px; height:160px;
+  background:radial-gradient(circle, rgba(34,211,238,0.08), transparent 70%);
+}
+.live-label {
+  display:flex; align-items:center; gap:8px;
+  font-size:11px; font-weight:700; color:var(--cyan);
+  letter-spacing:2px; margin-bottom:10px;
+}
+.live-dot { width:7px; height:7px; background:var(--cyan); border-radius:50%; animation:pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
+.earn-amount { font-size:38px; font-weight:900; margin-bottom:16px; }
+.chart-wrap { height:56px; margin:8px 0 16px; }
+.chart-wrap svg { width:100%; height:100%; }
+.earn-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.earn-box { background:var(--card2); border-radius:12px; padding:12px; }
+.earn-box .lbl { font-size:11px; color:var(--muted); font-weight:600; margin-bottom:4px; }
+.earn-box .val { font-size:20px; font-weight:800; color:var(--cyan); }
+
+/* SECTIONS */
+.section { padding:60px 20px; max-width:480px; margin:0 auto; position:relative; z-index:1; }
+.sec-title { font-size:30px; font-weight:900; text-align:center; margin-bottom:8px; }
+.sec-sub { font-size:14px; color:var(--muted); text-align:center; margin-bottom:32px; line-height:1.6; }
+
+/* WORKFLOW */
+.wf-steps { display:flex; flex-direction:column; gap:20px; }
+.wf-step { display:flex; align-items:flex-start; gap:16px; }
+.wf-icon {
+  background:var(--card2); border-radius:16px;
+  width:58px; height:58px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; position:relative;
+  border:1px solid var(--border);
+}
+.wf-num {
+  position:absolute; top:-8px; right:-8px;
+  background:var(--blue); color:#fff;
+  width:22px; height:22px; border-radius:50%;
+  font-size:11px; font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+  border:2px solid var(--bg);
+}
+.wf-text h3 { font-size:17px; font-weight:800; margin-bottom:4px; }
+.wf-text p { font-size:13px; color:var(--muted); line-height:1.6; }
+
+/* CAMPAIGNS */
+.pill-badge {
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--card); border:1px solid var(--border);
+  border-radius:20px; padding:6px 14px;
+  font-size:11px; font-weight:700; color:var(--muted);
+  letter-spacing:1px; margin-bottom:20px;
+}
+.camp-title { font-size:30px; font-weight:900; margin-bottom:8px; }
+.camp-sub { font-size:14px; color:var(--muted); margin-bottom:20px; line-height:1.6; }
+.joining-row {
+  display:flex; align-items:center; gap:12px;
+  background:var(--card); border:1px solid var(--border);
+  border-radius:14px; padding:12px 16px;
+  margin-bottom:20px; font-size:13px; font-weight:600; color:var(--muted);
+}
+.avatars { display:flex; }
+.av { width:26px; height:26px; border-radius:50%; background:var(--card2); border:2px solid var(--bg2); margin-left:-6px; display:flex; align-items:center; justify-content:center; font-size:11px; }
+.av:first-child { margin-left:0; }
+.camp-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:20px; padding:20px; margin-bottom:16px;
+}
+.cc-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:16px; }
+.cc-icon {
+  width:58px; height:58px; border-radius:16px;
+  background:linear-gradient(135deg,#ec4899,#8b5cf6);
+  display:flex; align-items:center; justify-content:center; font-size:26px;
+}
+.cc-right { text-align:right; }
+.cc-stars { color:var(--yellow); font-size:13px; margin-bottom:2px; }
+.cc-plbl { font-size:10px; font-weight:700; color:var(--muted); letter-spacing:1px; }
+.cc-pval { font-size:30px; font-weight:900; color:var(--yellow); line-height:1; }
+.cc-name { font-size:18px; font-weight:800; margin-bottom:10px; }
+.cc-tag {
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--card2); border-radius:8px;
+  padding:5px 12px; font-size:12px; font-weight:700;
+  color:var(--blue); margin-bottom:16px;
+}
+.cc-btn {
+  width:100%; background:var(--card2);
+  border:1px solid var(--border); border-radius:12px;
+  padding:14px; color:var(--muted); font-weight:700;
+  font-family:'Manrope',sans-serif; font-size:13px;
+  cursor:pointer; display:flex; align-items:center;
+  justify-content:center; gap:8px; text-decoration:none;
+  transition:all 0.2s; letter-spacing:1px;
+}
+.cc-btn:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+
+/* REVIEWS */
+.rev-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:20px; padding:20px; margin-bottom:16px;
+}
+.rev-stars { font-size:16px; margin-bottom:12px; }
+.rev-text { font-size:14px; font-style:italic; color:var(--muted); line-height:1.75; margin-bottom:16px; }
+.rev-user { display:flex; align-items:center; gap:12px; border-top:1px solid var(--border); padding-top:14px; }
+.rev-av { width:40px; height:40px; border-radius:50%; background:var(--card2); display:flex; align-items:center; justify-content:center; font-size:18px; }
+.rev-name { font-size:14px; font-weight:700; }
+.rev-role { font-size:10px; color:var(--muted); font-weight:700; letter-spacing:1.5px; }
+
+/* STATS */
+.stats-card { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:24px; }
+.s-row { padding:14px 0; border-bottom:1px solid var(--border); }
+.s-row:last-child { border-bottom:none; }
+.s-lbl { font-size:11px; font-weight:700; color:var(--muted); letter-spacing:1.5px; margin-bottom:6px; }
+.s-val { font-size:28px; font-weight:900; display:flex; align-items:center; gap:8px; }
+.s-badge { background:rgba(16,185,129,0.15); color:var(--green); border-radius:6px; padding:3px 8px; font-size:11px; font-weight:700; }
+.prog { height:5px; background:var(--card2); border-radius:3px; margin-top:8px; overflow:hidden; }
+.prog-fill { height:100%; background:linear-gradient(90deg,var(--blue),var(--cyan)); border-radius:3px; }
+.s-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px; }
+.s-box { background:var(--card2); border-radius:12px; padding:14px; }
+.s-box .lbl { font-size:10px; color:var(--muted); font-weight:700; letter-spacing:1px; }
+.s-box .val { font-size:20px; font-weight:800; margin-top:4px; }
+.sys-row { display:flex; justify-content:space-between; align-items:center; margin-top:16px; padding-top:16px; border-top:1px solid var(--border); }
+.sys-lbl { font-size:11px; color:var(--muted); font-weight:700; letter-spacing:1px; }
+.sys-active { display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:var(--green); }
+.sys-active::before { content:''; width:7px; height:7px; background:var(--green); border-radius:50%; }
+
+/* FOOTER */
+footer {
+  background:var(--bg2); border-top:1px solid var(--border);
+  padding:40px 20px 32px; position:relative; z-index:1;
+}
+.ft-inner { max-width:480px; margin:0 auto; }
+.ft-logo { font-size:22px; font-weight:900; margin-bottom:8px; }
+.ft-logo .bolt { color:var(--yellow); text-shadow:0 0 12px rgba(245,158,11,0.7); }
+.ft-desc { font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:20px; }
+.ft-socials { display:flex; gap:10px; margin-bottom:28px; }
+.ft-soc { width:42px; height:42px; background:var(--card); border:1px solid var(--border); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; text-decoration:none; }
+.ft-sec { margin-bottom:22px; }
+.ft-lbl { font-size:10px; font-weight:700; color:var(--muted); letter-spacing:2px; margin-bottom:12px; }
+.ft-links { display:flex; flex-direction:column; gap:10px; }
+.ft-link { font-size:14px; color:var(--muted); text-decoration:none; font-weight:500; transition:color 0.2s; }
+.ft-link:hover { color:var(--text); }
+.infra-box { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; margin-top:8px; }
+.infra-amt { font-size:26px; font-weight:900; margin-bottom:4px; }
+.infra-lbl { font-size:10px; color:var(--muted); font-weight:700; letter-spacing:1.5px; margin-bottom:12px; }
+.uptime-row { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); font-weight:700; margin-bottom:6px; }
+.uptime-val { color:var(--blue); }
+.copyright { text-align:center; font-size:11px; color:var(--muted); margin-top:28px; letter-spacing:1.5px; font-weight:600; line-height:1.8; }
+.ssl { display:flex; align-items:center; justify-content:center; gap:8px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; margin-top:14px; font-size:13px; font-weight:600; color:var(--green); }
+
+/* DIVIDER */
+.divider { height:1px; background:var(--border); margin:0 20px; }
+
+/* OVERLAY */
+.overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:150; }
+.overlay.open { display:block; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <span class="name">TrackFlix</span>
+    <span class="bolt">⚡</span>
+  </div>
+  <button class="menu-btn" onclick="openMenu()">☰</button>
+</nav>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="menu-header">
+    <div class="logo"><span class="name">TrackFlix</span><span class="bolt">⚡</span></div>
+    <button class="menu-close" onclick="closeMenu()">✕</button>
+  </div>
+  <div class="menu-label">MAIN MENU</div>
+  <a href="#hero" class="menu-item" onclick="closeMenu()">🏠&nbsp; Home</a>
+  <a href="#offers" class="menu-item" onclick="closeMenu()">🎁&nbsp; Live Offers</a>
+  <a href="#workflow" class="menu-item" onclick="closeMenu()">❓&nbsp; How it Works</a>
+  <a href="#reviews" class="menu-item" onclick="closeMenu()">⭐&nbsp; Reviews</a>
+  <div style="margin-top:auto">
+    <div class="stay-box">
+      <div class="tag">STAY UPDATED</div>
+      <p>Join 5,000+ members in our official Telegram for flash offers & payment proof!</p>
+    </div>
+    <a href="https://t.me/+0Z6zL57TAHxiYjU1" target="_blank" class="menu-tg">Join Telegram →</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="trust-pill"><div class="dot"></div> Trusted by 10,000+ Users</div>
+  <h1>India's<br><span class="gradient">Highest Paying</span><br>Reward Network</h1>
+  <p>Monetize traffic with high paying CPA, CPI, CPL & CPR campaigns across fintech, gaming, ecommerce and apps. Experience the future of affiliate marketing. time.</p>
+  <div class="hero-btns">
+    <a href="#offers" class="btn-primary">Explore Offers →</a>
+    <a href="https://t.me/+0Z6zL57TAHxiYjU1" target="_blank" class="btn-secondary">Join Telegram</a>
+  </div>
+
+  <div class="earnings-card">
+    <div class="live-label"><div class="live-dot"></div> LIVE EARNINGS</div>
+    <div class="earn-amount">₹1,24,500</div>
+    <div class="chart-wrap">
+      <svg viewBox="0 0 300 56" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="cg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="100%" stop-color="#22d3ee"/>
+          </linearGradient>
+        </defs>
+        <polyline points="0,48 40,38 80,42 120,26 160,30 200,16 250,20 300,6" fill="none" stroke="url(#cg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="earn-grid">
+      <div class="earn-box">
+        <div class="lbl">Today</div>
+        <div class="val">+₹12,450</div>
+      </div>
+      <div class="earn-box">
+        <div class="lbl">Conversions</div>
+        <div class="val" style="color:var(--text)">847</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WORKFLOW -->
+<div class="section" id="workflow">
+  <div class="sec-title">Simple Workflow</div>
+  <div class="sec-sub">Skip the complexity. Follow 3 easy steps to start getting paid directly via UPI.</div>
+  <div class="wf-steps">
+    <div class="wf-step">
+      <div class="wf-icon">🎯<div class="wf-num">1</div></div>
+      <div class="wf-text">
+        <h3>Pick an Offer</h3>
+        <p>Pick from hundreds of high paying campaigns available instantly.</p>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-icon">✅<div class="wf-num">2</div></div>
+      <div class="wf-text">
+        <h3>Task Verification</h3>
+        <p>Follow the steps to complete the task. Our tracking system auto-verifies your completion.</p>
+      </div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-icon">💸<div class="wf-num">3</div></div>
+      <div class="wf-text">
+        <h3>Direct Cash</h3>
+        <p>No coins, no wallets. Money is transferred directly to your bank account via UPI.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- OFFERS -->
+<div class="section" id="offers">
+  <div class="pill-badge">⚡ VERIFIED HIGH EPC STACK</div>
+  <div class="camp-title">Live<br><span style="color:var(--blue)">Campaigns.</span></div>
+  <div class="camp-sub">Choose from our top performing campaigns. High conversion rates and instant verification guaranteed.</div>
+  <div class="joining-row">
+    <div class="avatars">
+      <div class="av">👤</div><div class="av">👤</div><div class="av">👤</div><div class="av">👤</div>
+    </div>
+    <span>+1.2K joining today</span>
+  </div>
+  <div class="camp-card">
+    <div class="cc-top">
+      <div class="cc-icon">📺</div>
+      <div class="cc-right">
+        <div class="cc-stars">★★★★★</div>
+        <div class="cc-plbl">PAYOUT</div>
+        <div class="cc-pval">₹30</div>
+      </div>
+    </div>
+    <div class="cc-name">Story Tv 2</div>
+    <div class="cc-tag">⚡ TRAIL PURCHASE</div>
+    <a href="cash-flix.vercel.app" target="_blank" class="cc-btn">START CAMPAIGN →</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- REVIEWS -->
+<div class="section" id="reviews">
+  <div class="sec-title">What Our <span style="color:var(--blue)">Earners</span> Say</div>
+  <div class="sec-sub">Join thousands of happy users who earn daily with TrackFlix.</div>
+
+  <div class="rev-card">
+    <div class="rev-stars">★★★★★</div>
+    <div class="rev-text">"Best platform for quick pocket money. The UPI transfer happens almost immediately after task verification. Highly recommended!"</div>
+    <div class="rev-user">
+      <div class="rev-av">👨</div>
+      <div><div class="rev-name">Rahul Sharma</div><div class="rev-role">PUBLISHER</div></div>
+    </div>
+  </div>
+
+  <div class="rev-card">
+    <div class="rev-stars">★★★★★</div>
+    <div class="rev-text">"I've tried many apps, but TrackFlix is superior because there's no withdrawal process. Money goes straight to the bank!"</div>
+    <div class="rev-user">
+      <div class="rev-av">👩</div>
+      <div><div class="rev-name">Priya Singh</div><div class="rev-role">EXPERT EARNER</div></di
+        </div>
+  </div>
+
+  <div class="rev-card">
+    <div class="rev-stars">★★★★★</div>
+    <div class="rev-text">"The tracking system is very accurate. High EPC and very transparent tracking. Great for bulk traffic."</div>
+    <div class="rev-user">
+      <div class="rev-av">👨</div>
+      <div><div class="rev-name">Ankit Patel</div><div class="rev-role">TOP PUBLISHER</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- STATS -->
+<div class="section">
+  <div class="stats-card">
+    <div class="s-row">
+      <div class="s-lbl">NETWORK PAYOUTS</div>
+      <div class="s-val">₹4.82L <span class="s-badge">12.5% GROWTH</span></div>
+    </div>
+    <div class="s-row">
+      <div class="s-lbl">CONVERSION ACCURACY</div>
+      <div class="s-val" style="font-size:24px">99.98% <span style="color:var(--blue);font-size:13px;font-weight:700">Optimal</span></div>
+      <div class="prog"><div class="prog-fill" style="width:99.98%"></div></div>
+    </div>
+    <div class="s-grid">
+      <div class="s-box"><div class="lbl">AVG. EPC</div><div class="val" style="color:var(--cyan)">₹14.2</div></div>
+      <div class="s-box"><div class="lbl">DAILY HITS</div><div class="val">2.4M</div></div>
+    </div>
+    <div class="sys-row">
+      <div class="sys-lbl">SYSTEM STATUS</div>
+      <div class="sys-active">ALL NODES ACTIVE</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-logo">TrackFlix <span class="bolt">⚡</span></div>
+    <div class="ft-desc">India's #1 Rewards Network. Complete simple tasks and get paid directly to your bank account via UPI instantly.</div>
+    <div class="ft-socials">
+      <a href="https://t.me/+0Z6zL57TAHxiYjU1" target="_blank" class="ft-soc">✈️</a>
+      <a href="#" class="ft-soc">📸</a>
+      <a href="#" class="ft-soc">▶️</a>
+    </div>
+    <div class="ft-sec">
+      <div class="ft-lbl">NAVIGATION</div>
+      <div class="ft-links">
+        <a href="#offers" class="ft-link">Active Offers</a>
+        <a href="https://t.me/+0Z6zL57TAHxiYjU1" class="ft-link">Join Telegram</a>
+        <a href="#workflow" class="ft-link">How it Works</a>
+      </div>
+    </div>
+    <div class="ft-sec">
+      <div class="ft-lbl">LEGAL</div>
+      <div class="ft-links">
+        <a href="#" class="ft-link">Terms & Conditions</a>
+        <a href="#" class="ft-link">Privacy Policy</a>
+        <a href="#" class="ft-link">Refund Policy</a>
+      </div>
+    </div>
+    <div class="infra-box">
+      <div class="infra-amt">₹4,82,500+</div>
+      <div class="infra-lbl">PAID WEEKLY</div>
+      <div class="uptime-row"><span>UPTIME</span><span class="uptime-val">99.9%</span></div>
+      <div class="prog"><div class="prog-fill" style="width:99.9%"></div></div>
+    </div>
+    <div class="copyright">© 2025 - 2026 TRACKFLIX NETWORK<br>ALL RIGHTS RESERVED</div>
+    <div class="ssl">🔒 Secure SSL Encryption Active</div>
+  </div>
+</footer>
+
+<script>
+function openMenu(){document.getElementById('mobileMenu').classList.add('open');document.getElementById('overlay').classList.add('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
+</script>
+</body>
+</html>                                                                                      
